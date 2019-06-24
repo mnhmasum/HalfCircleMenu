@@ -140,6 +140,10 @@ public class PieActivity extends AppCompatActivity {
             path.lineTo(350, 300);
             //canvas.drawPath(path, paint);
 
+            float b = (x / 2 - x / 8);
+
+
+
         }
 
         void illuminate(int progress) {
@@ -235,11 +239,11 @@ public class PieActivity extends AppCompatActivity {
         }
 
         private boolean isInCircle(float cx, float cy, MotionEvent tapPoint, float radius) {
-            float done = (float) Math.sqrt(Math.pow((tapPoint.getX() - cx), 2) + Math.pow((tapPoint.getY() - cy), 2));
-            Log.d("Circle", "isInCircle: " + done);
+            float hype = (float) Math.sqrt(Math.pow((tapPoint.getX() - cx), 2) + Math.pow((tapPoint.getY() - cy), 2));
+            Log.d("Circle", "isInCircle: " + hype);
             Log.d("Circle", "Radius: " + radius);
 
-            if (radius >= done) {
+            if (radius >= hype) {
                 return true;
             }
 
