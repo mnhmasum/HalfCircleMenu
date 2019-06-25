@@ -88,6 +88,8 @@ public class PieActivity extends AppCompatActivity {
             x = getWidth();
             y = getHeight();
 
+            Log.d("Screen", x/2 + "onDraw: " + y/2);
+
             paint.setStyle(Paint.Style.FILL);
             paint.setColor(Color.WHITE);
             canvas.drawPaint(paint);
@@ -158,14 +160,14 @@ public class PieActivity extends AppCompatActivity {
 
             double startY = sinAngle * d + y / 2;
 
-            canvas.drawCircle((float) startX, (float) startY, 5, paint);
+            //canvas.drawCircle((float) startX, (float) startY, 5, paint);
 
 
             // prints the cosine value
             System.out.println("cos(" + degrees + ") = " + cosAngle);
             Log.d("Cos X", "onDraw: " + myX);
 
-            paint.setColor(Color.BLUE);
+            paint.setColor(Color.WHITE);
             canvas.drawCircle(myX, myy, 5, paint);
 
         }
@@ -183,7 +185,7 @@ public class PieActivity extends AppCompatActivity {
 
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
-                    System.out.println(x + ' ' + y);
+                    System.out.println(x + "::" + y);
                     break;
                 case MotionEvent.ACTION_MOVE:
                     System.out.println(x + ' ' + y);
@@ -252,11 +254,18 @@ public class PieActivity extends AppCompatActivity {
         }
 
         private boolean isInSweep(MotionEvent event, RectF bounds, float startAngle, float sweepAngle) {
-            final float at = (float) Math.toDegrees(Math.atan2(event.getY() - bounds.centerY(),
-                    event.getX() - bounds.centerX()));
+            final float at = (float) Math.toDegrees(Math.atan2(-35,
+                    -263));
+
+            Log.d("bounds", "isInSweep x: " + bounds.centerX());
+            Log.d("bounds", "isInSweep y: " + bounds.centerY());
+            Log.d("Angle1", "isInSweep: " + at);
+            Log.d("raw", "isInSweep: " + Math.atan2(-213,
+                    -260));
 
             // Convert from atan2 to standard angle.
             final float angle = (at + 360) % 360;
+            Log.d("Angle2", "isInSweep: " + angle);
 
             // Check if in sweep.
             return angle >= startAngle && angle <= startAngle + sweepAngle;
