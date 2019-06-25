@@ -140,9 +140,33 @@ public class PieActivity extends AppCompatActivity {
             path.lineTo(350, 300);
             //canvas.drawPath(path, paint);
 
-            float b = (x / 2 - x / 8);
+            float d = (x / 2 - x / 8) / 2;
+
+            double degrees = 330;
+
+            // convert degrees to radians
+            double radians = Math.toRadians(degrees);
+
+            // cos() method to get the cosine value
+            double cosAngle = Math.cos(radians);
+            double sinAngle = Math.sin(radians);
+
+            float myX = (float) (d * cosAngle + (x / 2));
+            float myy = (float) (d * sinAngle + (y / 2));
+
+            double startX = cosAngle * d + x / 2;
+
+            double startY = sinAngle * d + y / 2;
+
+            canvas.drawCircle((float) startX, (float) startY, 5, paint);
 
 
+            // prints the cosine value
+            System.out.println("cos(" + degrees + ") = " + cosAngle);
+            Log.d("Cos X", "onDraw: " + myX);
+
+            paint.setColor(Color.BLUE);
+            canvas.drawCircle(myX, myy, 5, paint);
 
         }
 
