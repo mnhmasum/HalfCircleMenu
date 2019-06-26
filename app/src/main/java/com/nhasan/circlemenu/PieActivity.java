@@ -256,7 +256,8 @@ public class PieActivity extends AppCompatActivity {
                     event.getX() - bounds.centerX()));
 
             // Convert from atan2 to standard angle.
-            final float angle = (at + 360) % 360;
+            //final float angle = (at + 360) % 360;
+            final float angle = (at + 360);
 
             // Check if in sweep.
             return angle >= startAngle && angle <= startAngle + sweepAngle;
