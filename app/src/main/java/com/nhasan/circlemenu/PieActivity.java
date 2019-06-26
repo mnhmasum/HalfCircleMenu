@@ -189,27 +189,27 @@ public class PieActivity extends AppCompatActivity {
                     System.out.println(x + ' ' + y);
                     break;
                 case MotionEvent.ACTION_UP:
+                    if (!isInCircle(getWidth() / 2, getHeight() / 2, event, (getWidth() / 2 - getWidth() / 8))) {
+                        Log.d("Tap", "Outside Circle");
+                        break;
+                    }
+
                     if (isInSweep(event, rect, 180, 60)) {
+                        Log.d("Tap", "onTouchEvent: Rect");
 
+                        paint.setStyle(Paint.Style.FILL_AND_STROKE);
 
-                        if (isInCircle(getWidth() / 2, getHeight() / 2, event, (getWidth() / 2 - getWidth() / 8))) {
-                            Log.d("Tap", "onTouchEvent: Rect");
-
-                            paint.setStyle(Paint.Style.FILL_AND_STROKE);
-
-                            if (rOne == 0) {
-                                color = Color.BLUE;
-                                paint.setColor(color);
-                                rOne = 1;
-                            } else {
-                                color = Color.GREEN;
-                                paint.setColor(color);
-                                rOne = 0;
-                            }
-
-                            invalidate();
+                        if (rOne == 0) {
+                            color = Color.BLUE;
+                            paint.setColor(color);
+                            rOne = 1;
+                        } else {
+                            color = Color.GREEN;
+                            paint.setColor(color);
+                            rOne = 0;
                         }
 
+                        invalidate();
 
                     } else if (isInSweep(event, myView.rect2, 240, 60)) {
                         Log.d("Tap", "onTouchEvent: Rect2");
